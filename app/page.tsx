@@ -41,11 +41,11 @@ function ResultCards({ results }: { results: WordAnalysis[] }) {
           </div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
             <span className="text-gray-500">拼音</span>
-            <span className="font-mono text-xs">{r.pinyinStr}</span>
+            <span className="font-mono text-xs text-gray-900">{r.pinyinStr}</span>
             <span className="text-gray-500">平仄</span>
             <span><ToneSpan pattern={r.tonePattern} /></span>
             <span className="text-gray-500">末字</span>
-            <span className="font-mono text-xs">{r.lastPinyin}</span>
+            <span className="font-mono text-xs text-gray-900">{r.lastPinyin}</span>
             <span className="text-gray-500">声调</span>
             <span>
               <span className={r.lastTone === "平" ? "text-blue-600 font-bold" : "text-red-600 font-bold"}>
@@ -53,7 +53,7 @@ function ResultCards({ results }: { results: WordAnalysis[] }) {
               </span>
             </span>
             <span className="text-gray-500">韵母</span>
-            <span className="font-mono">{r.rhymeFinal || "—"}</span>
+            <span className="font-mono text-gray-900">{r.rhymeFinal || "—"}</span>
           </div>
         </div>
       ))}
