@@ -84,15 +84,15 @@ function ResultTable({ results }: { results: WordAnalysis[] }) {
               <td className="px-3 py-2 text-amber-600">{r.index}</td>
               <td className="px-3 py-2 font-semibold text-lg">{r.word}</td>
               <td className="px-3 py-2 text-center">{r.length}</td>
-              <td className="px-3 py-2 font-mono text-xs">{r.pinyinStr}</td>
+              <td className="px-3 py-2 font-mono text-xs text-gray-900">{r.pinyinStr}</td>
               <td className="px-3 py-2"><ToneSpan pattern={r.tonePattern} /></td>
-              <td className="px-3 py-2 font-mono text-xs">{r.lastPinyin}</td>
+              <td className="px-3 py-2 font-mono text-xs text-gray-900">{r.lastPinyin}</td>
               <td className="px-3 py-2">
                 <span className={r.lastTone === "平" ? "text-blue-600 font-bold" : "text-red-600 font-bold"}>
                   {r.lastTone}
                 </span>
               </td>
-              <td className="px-3 py-2 font-mono">{r.rhymeFinal}</td>
+              <td className="px-3 py-2 font-mono text-gray-900">{r.rhymeFinal}</td>
               <td className="px-3 py-2"><RhymeBadge group={r.rhymeGroup} /></td>
             </tr>
           ))}
