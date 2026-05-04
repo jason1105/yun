@@ -122,7 +122,7 @@ export default function Home() {
 
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <textarea
-            className="flex-1 h-40 sm:h-48 p-3 rounded-lg border border-amber-300 bg-white font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-amber-400"
+            className="flex-1 h-40 sm:h-48 p-3 rounded-lg border border-amber-300 bg-white font-mono text-sm text-gray-900 placeholder:text-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-amber-400"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="每行输入一个词语..."
