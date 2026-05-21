@@ -130,7 +130,7 @@ export default function SearchPage() {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl sm:text-3xl font-bold text-amber-900">韵析 · 检索</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-amber-900">韵析 · Yun Xi</h1>
           <Link href="/analyze" className="text-sm text-amber-700 hover:underline">分析 →</Link>
         </div>
 
