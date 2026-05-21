@@ -18,7 +18,7 @@ function stripTones(pinyin: string): string {
   return pinyin.replace(/[1-5]/g, "");
 }
 
-const MAX_RESULTS = 200;
+const PAGE_SIZE = 50;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -30,10 +30,11 @@ export async function GET(request: NextRequest) {
   const lastTone    = searchParams.get("lastTone")     ?? "";
   const rhymeFinal  = searchParams.get("rhymeFinal")   ?? "";
   const rhymeGroup  = searchParams.get("rhymeGroup")   ?? "";
+  const offset      = parseInt(searchParams.get("offset") ?? "0", 10);
 
   // Must have at least one filter
   if (!word && !charCount && !pinyinQuery && !tonePattern && !lastTone && !rhymeFinal && !rhymeGroup) {
-    return NextResponse.json({ total: 0, results: [] });
+    return NextResponse.json({ total: 0, results: [], hasMore: false });
   }
 
   const pinyinIsExact = pinyinQuery !== "" && /[1-5]/.test(pinyinQuery);
@@ -58,7 +59,6 @@ export async function GET(request: NextRequest) {
     if (pinyinIsExact) {
       results = results.filter((r) => r.pinyinStr.includes(pinyinQuery));
     } else {
-      // Fuzzy: strip tones from both sides and do substring match
       const q = stripTones(pinyinQuery);
       results = results.filter((r) => stripTones(r.pinyinStr).includes(q));
     }
@@ -81,6 +81,9 @@ export async function GET(request: NextRequest) {
     results = results.filter((r) => r.rhymeGroup === rhymeGroup);
   }
 
-  const total = results.length;
-  return NextResponse.json({ total, results: results.slice(0, MAX_RESULTS) });
+  const total   = results.length;
+  const page    = results.slice(offset, offset + PAGE_SIZE);
+  const hasMore = offset + PAGE_SIZE < total;
+
+  return NextResponse.json({ total, results: page, hasMore });
 }
