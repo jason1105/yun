@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { analyzeWords, WordAnalysis } from "./lib/yun";
 
 const SAMPLE = `桉油
@@ -115,8 +116,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-amber-50 p-4 sm:p-6">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center text-amber-900 mb-2">韵析 · Yun Xi</h1>
-        <p className="text-center text-amber-700 mb-6 text-sm">
+        <div className="flex items-center justify-between mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-amber-900">韵析 · Yun Xi</h1>
+          <Link href="/search" className="text-sm text-amber-700 hover:underline">检索 →</Link>
+        </div>
+        <p className="text-amber-700 mb-6 text-sm">
           输入汉字词语（每行一个），分析拼音、平仄与韵部
         </p>
 
